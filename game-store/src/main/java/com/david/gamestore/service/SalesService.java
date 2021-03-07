@@ -2,6 +2,11 @@ package com.david.gamestore.service;
 
 import com.david.gamestore.model.Product;
 
+/**
+ * Serviço responsável por realizar as rotinas relacionadas com as vendas
+ * @author david
+ *
+ */
 public interface SalesService {
 	
 	/**
