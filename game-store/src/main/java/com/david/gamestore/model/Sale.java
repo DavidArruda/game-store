@@ -41,19 +41,19 @@ public class Sale {
 	
 	@NotBlank
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "sale", fetch = FetchType.LAZY, orphanRemoval = false)
-	private List<SaleItem> items;
+	private List<SaleItem> salesItems;
 	
 	public Sale() {
 		//CONSTRUTOR VAZIO
 	}
 
 	public Sale(@NotBlank BigDecimal freight, @NotBlank BigDecimal subtotal, @NotBlank BigDecimal total,
-			@NotBlank List<SaleItem> items) {
+			@NotBlank List<SaleItem> salesItems) {
 		super();
 		this.freight = freight;
 		this.subtotal = subtotal;
 		this.total = total;
-		this.items = items;
+		this.salesItems = salesItems;
 	}
 
 	public Long getId() {
@@ -73,7 +73,7 @@ public class Sale {
 	}
 
 	public List<SaleItem> getItems() {
-		return items;
+		return salesItems;
 	}
 	
 }
