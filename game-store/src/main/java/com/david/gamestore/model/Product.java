@@ -1,55 +1,65 @@
 package com.david.gamestore.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 /**
- * Classe modelo para entidade Product
+ * Classe modelo para entidade products
+ * 
  * @author david
  *
  */
 @Entity
 @Table(name = "products")
 public class Product {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
-	@NotBlank
-	@Column(nullable = false, length = 120)
-    private String name;
-    
-	@NotBlank
-	@Column(nullable = false, length = 120)
-    private BigDecimal price;
-    
-    private short score;
-    
-    @Column(columnDefinition = "text")
-    private String image;
-    
-    @Deprecated
-    public Product() {
-    	//CONSTRUTOR VAZIO	
-    }
+	private Long id;
 
-	public Product(@NotBlank String name, @NotBlank BigDecimal price, short score, String image) {
+	@NotBlank
+	@Column(nullable = false, length = 120)
+	private String name;
+
+	@NotBlank
+	@Column(precision = 15, scale = 2, nullable = false)
+	private BigDecimal price;
+
+	private short score;
+
+	@Column(columnDefinition = "text")
+	private String image;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product", orphanRemoval = false)
+	public List<SaleItem> salesItem;
+
+	@Deprecated
+	public Product() {
+		// CONSTRUTOR VAZIO
+	}
+
+	public Product(@NotBlank String name, @NotBlank BigDecimal price, short score, String image,
+			List<SaleItem> salesItem) {
 		super();
 		this.name = name;
 		this.price = price;
 		this.score = score;
 		this.image = image;
+		this.salesItem = salesItem;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -93,5 +103,5 @@ public class Product {
 			return false;
 		return true;
 	}
-	
+
 }
