@@ -22,7 +22,7 @@ import javax.validation.constraints.NotBlank;
  */
 @Entity
 @Table(name = "products")
-public class Product {
+public class Product implements Comparable<Product>{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -102,6 +102,11 @@ public class Product {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+	
+	@Override
+	public int compareTo(Product o) {
+		return name.compareTo(o.getName());
 	}
 
 }
