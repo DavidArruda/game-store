@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.david.gamestore.model.Sale;
 import com.david.gamestore.model.SaleItem;
 import com.david.gamestore.repository.SaleRepository;
+import com.david.gamestore.service.SalesService;
 
-public class SalesService implements com.david.gamestore.service.SalesService {
+public class SalesServiceImpl implements SalesService {
 
 	@Autowired
 	private SaleRepository saleRepository;
