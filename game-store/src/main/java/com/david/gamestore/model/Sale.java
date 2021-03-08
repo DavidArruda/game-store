@@ -12,7 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Classe modelo para entidade sales
@@ -43,17 +46,22 @@ public class Sale {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "sale", fetch = FetchType.LAZY, orphanRemoval = false)
 	private List<SaleItem> salesItems;
 	
+	@JsonIgnore
+	@Transient
+	private List<BigDecimal> checkout;
+	
 	public Sale() {
 		//CONSTRUTOR VAZIO
 	}
 
 	public Sale(@NotBlank BigDecimal freight, @NotBlank BigDecimal subtotal, @NotBlank BigDecimal total,
-			@NotBlank List<SaleItem> salesItems) {
+			@NotBlank List<SaleItem> salesItems, List<BigDecimal> checkout) {
 		super();
 		this.freight = freight;
 		this.subtotal = subtotal;
 		this.total = total;
 		this.salesItems = salesItems;
+		this.checkout = checkout;
 	}
 
 	public Long getId() {
@@ -74,6 +82,14 @@ public class Sale {
 
 	public List<SaleItem> getItems() {
 		return salesItems;
+	}
+	
+	public List<BigDecimal> getCheckout() {
+		return checkout;
+	}
+	
+	public void setCheckout(List<BigDecimal> checkout) {
+		this.checkout = checkout;
 	}
 	
 }
