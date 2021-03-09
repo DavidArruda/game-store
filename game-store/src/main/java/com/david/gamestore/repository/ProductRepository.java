@@ -13,6 +13,6 @@ import com.david.gamestore.model.Product;
  */
 @Repository
 @Transactional
-public interface ProductRepository extends JpaRepository<Product, Integer> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
 	
 }
