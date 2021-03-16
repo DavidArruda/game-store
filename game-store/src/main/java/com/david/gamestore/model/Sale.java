@@ -80,8 +80,12 @@ public class Sale {
 		return total;
 	}
 
-	public List<SaleItem> getItems() {
+	public List<SaleItem> getSalesItems() {
 		return salesItems;
+	}
+	
+	public void setSalesItems(List<SaleItem> salesItems) {
+		this.salesItems = salesItems;
 	}
 	
 	public List<BigDecimal> getCheckout() {
