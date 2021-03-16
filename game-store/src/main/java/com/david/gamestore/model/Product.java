@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Classe modelo para entidade products
  * 
@@ -41,6 +43,7 @@ public class Product implements Comparable<Product>{
 	@Column(columnDefinition = "text")
 	private String image;
 
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product", orphanRemoval = false)
 	public List<SaleItem> salesItem;
 
