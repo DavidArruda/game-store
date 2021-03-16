@@ -1,0 +1,10 @@
+INSERT INTO PRODUCTS (name, price, score) VALUES ('Mario World', 49.99, 800);
+INSERT INTO PRODUCTS (name, price, score) VALUES ('Euro Truck Simulator 2', 30.5, 900);
+INSERT INTO PRODUCTS (name, price, score) VALUES ('Far Cry 5', 49.99, 650);
+INSERT INTO PRODUCTS (name, price, score) VALUES ('Mario Kart', 49.99, 900);
+INSERT INTO PRODUCTS (name, price, score) VALUES ('Resident Evil 2 Remake', 120.00, 800);
+INSERT INTO PRODUCTS (name, price, score) VALUES ('Resident Evil 3 Remake', 120.00, 800);
+INSERT INTO PRODUCTS (name, price, score) VALUES ('OutLast 2', 36.99, 750);
+INSERT INTO PRODUCTS (name, price, score) VALUES ('Call of Duty MW', 99.99, 950);
+INSERT INTO PRODUCTS (name, price, score) VALUES ('Call of Duty MW2', 99.99, 950);
+INSERT INTO PRODUCTS (name, price, score) VALUES ('Call of Duty MW3', 99.99, 950);
