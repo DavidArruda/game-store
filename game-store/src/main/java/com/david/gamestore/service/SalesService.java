@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.david.gamestore.model.Product;
 import com.david.gamestore.model.Sale;
 import com.david.gamestore.model.SaleItem;
 
@@ -20,18 +21,18 @@ public interface SalesService {
 	/**
 	 * Adiciona um novo produto no carrinho de compras
 	 * 
-	 * @param Sale, SaleItem
+	 * @param Sale, idItem
 	 * @throws Exception
 	 */
-	void addItem(Sale sale, SaleItem saleItem) throws Exception;
+	Sale addItem(Sale sale, Long idItem) throws Exception;
 
 	/**
 	 * Remove um produto do carrinho de compra
 	 * 
-	 * @param Sale, SaleItem
+	 * @param Sale, idItem
 	 * @throws Exception
 	 */
-	void removeItem(Sale sale, SaleItem saleItem) throws Exception;
+	void removeItem(Sale sale, Long idITem) throws Exception;
 
 	/**
 	 * Obtem o checkout(frete, subtotal e total) de uma venda.
@@ -50,5 +51,12 @@ public interface SalesService {
 	 * @throws Exception
 	 */
 	BigDecimal calculateFreight(List<SaleItem> saleItems) throws Exception;
+
+	/**
+	 * Retorna uma lista com todos os dados cadastrados na entidade products.
+	 * @return List<Product>
+	 * @throws Exception
+	 */
+	List<Product> findAllProducts() throws Exception;
 
 }
