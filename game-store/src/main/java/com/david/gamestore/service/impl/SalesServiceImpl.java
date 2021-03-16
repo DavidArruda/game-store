@@ -1,29 +1,40 @@
 package com.david.gamestore.service.impl;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.david.gamestore.model.Product;
 import com.david.gamestore.model.Sale;
 import com.david.gamestore.model.SaleItem;
-import com.david.gamestore.repository.SaleRepository;
+import com.david.gamestore.repository.ProductRepository;
 import com.david.gamestore.service.SalesService;
 
+@Service
 public class SalesServiceImpl implements SalesService {
 
 	@Autowired
-	private SaleRepository saleRepository;
+	private ProductRepository productRepository;
 
 	@Override
-	public void addItem(Sale sale, SaleItem saleItem) throws Exception {
-		sale.getItems().add(saleItem);
+	public Sale addItem(Sale sale, Long idItem) throws Exception {
+		SaleItem saleItem = new SaleItem(productRepository.findById(idItem).get(), sale);
+
+		if (sale.getSalesItems() == null) {
+			sale.setSalesItems(new ArrayList<>());
+		}
+
+		sale.getSalesItems().add(saleItem);
+		return sale;
 	}
 
 	@Override
-	public void removeItem(Sale sale, SaleItem saleItem) throws Exception {
-		sale.getItems().remove(saleItem);
-
+	public void removeItem(Sale sale, Long idItem) throws Exception {
+		SaleItem saleItem = new SaleItem(productRepository.findById(idItem).get(), sale);
+		sale.getSalesItems().remove(saleItem);
 	}
 
 	@Override
@@ -41,6 +52,11 @@ public class SalesServiceImpl implements SalesService {
 		}
 
 		return freghitValue;
+	}
+
+	@Override
+	public List<Product> findAllProducts() throws Exception {
+		return productRepository.findAll();
 	}
 
 }
