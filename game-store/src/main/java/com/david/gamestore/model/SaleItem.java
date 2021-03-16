@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Classe modelo para relacionar os produtos com uma venda
  * @author david
@@ -26,6 +28,7 @@ public class SaleItem {
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Product product;
 
+	@JsonIgnore
 	@NotBlank
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Sale sale;
@@ -49,8 +52,16 @@ public class SaleItem {
 		return product;
 	}
 	
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	
 	public Sale getSale() {
 		return sale;
+	}
+	
+	public void setSale(Sale sale) {
+		this.sale = sale;
 	}
 
 	@Override
