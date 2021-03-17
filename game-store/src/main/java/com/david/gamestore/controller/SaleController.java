@@ -45,16 +45,18 @@ public class SaleController {
 	
 	@PatchMapping(value = "/add-items/{id}")
 	public ResponseEntity<Sale> addItem(@PathVariable("id") long id, @RequestBody Sale sale) throws Exception {
-		return ResponseEntity.ok().body(salesService.addItem(sale, id));
+		var saleReturn = salesService.addItem(sale, id);
+		saleReturn.setFreight(salesService.calculateFreight(saleReturn.getSalesItems()));
+		return ResponseEntity.ok().body(saleReturn);
 	}
 
-	/*
-	@GetMapping(value = "/remove-items/{id}")
-	public ResponseEntity<Sale> removeItem(@PathVariable("id") long id, @RequestBody Sale sale) throws Exception {
-		salesService.removeItem(sale, id);
+	@PatchMapping(value = "/remove-items/{indexSalemItem}")
+	public ResponseEntity<Sale> removeItem(@PathVariable("indexSalemItem") int indexSalemItem, @RequestBody Sale sale) throws Exception {
+		salesService.removeItem(sale, indexSalemItem);
 		return ResponseEntity.ok().body(sale);
 	}
 
+	/*
 	@GetMapping(path = { "/checkout" })
 	public ResponseEntity<List<BigDecimal>> getCheckout(@RequestBody Sale sale) throws Exception {
 		return new ResponseEntity<List<BigDecimal>>(salesService.getCheckOut(sale), HttpStatus.OK);
