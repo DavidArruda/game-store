@@ -29,10 +29,10 @@ public interface SalesService {
 	/**
 	 * Remove um produto do carrinho de compra
 	 * 
-	 * @param Sale, idItem
+	 * @param Sale, indexSalemItem
 	 * @throws Exception
 	 */
-	void removeItem(Sale sale, Long idITem) throws Exception;
+	void removeItem(Sale sale, int indexSalemItem) throws Exception;
 
 	/**
 	 * Obtem o checkout(frete, subtotal e total) de uma venda.

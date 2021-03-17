@@ -32,9 +32,8 @@ public class SalesServiceImpl implements SalesService {
 	}
 
 	@Override
-	public void removeItem(Sale sale, Long idItem) throws Exception {
-		SaleItem saleItem = new SaleItem(productRepository.findById(idItem).get(), sale);
-		sale.getSalesItems().remove(saleItem);
+	public void removeItem(Sale sale, int indexSalemItem) throws Exception {
+		sale.getSalesItems().remove(indexSalemItem);
 	}
 
 	@Override
