@@ -71,6 +71,10 @@ public class Sale {
 	public BigDecimal getFreight() {
 		return freight;
 	}
+	
+	public void setFreight(BigDecimal freight) {
+		this.freight = freight;
+	}
 
 	public BigDecimal getSubtotal() {
 		return subtotal;
